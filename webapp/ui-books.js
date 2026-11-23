@@ -102,7 +102,7 @@ export function bookScreens(ctx, nav) {
           v.logs.length ? h('h2', { class: 'g-h2' }, ctx.P('app.history')) : null,
           h('ul', { class: 'logs', 'data-testid': 'logs' }, v.logs.map((l) => h('li', { class: `st-${l.status}` }, h('span', {}, date(l.day)),
             h('b', {}, `+${l.pages}`), l.asked > l.pages ? h('small', {}, `(${l.asked})`) : null,
-            ctx.P(`status.${l.status}`) ? h('em', {}, ctx.P(`status.${l.status}`)) : null))));
+            l.status === 'ok' ? null : h('em', {}, ctx.P(`status.${l.status}`))))));
       },
     };
   };

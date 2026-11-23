@@ -201,8 +201,10 @@ Object.assign(Backend.prototype, {
   // ── certs.py ──
   issue(uid, kind, ref, title, pages, days, club) {
     if (this.certRows.some((c) => c.ref === ref)) return null;
-    let nonce;
-    do nonce = cert.hex(rand5()); while (this.certRows.some((c) => c.nonce === nonce));
+    // The server draws 5 random bytes; the demo derives them from the achievement, so the same story always gives the
+    // same code and a "?v=" link to this page can replay the story and check it.
+    let nonce = cert.hex(cert.sha256(`demo:${ref}`).slice(0, 5));
+    while (this.certRows.some((c) => c.nonce === nonce)) nonce = cert.hex(cert.sha256(`demo:${nonce}`).slice(0, 5));
     const row = { id: this.next.cert++, nonce, user_id: uid, kind, ref, name: this.user(uid).name, title, pages, days, club, issued_day: this.today() };
     this.certRows.push(row);
     return row.id;

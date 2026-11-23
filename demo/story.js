@@ -10,6 +10,7 @@ export const STEPS = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'ste
 const WEEK = [30, 42, 35, 28, 40, 33];
 const NEXT = ['kecha_va_kunduz', 'shum_bola', 'sariq_devni_minib', 'dunyoning_ishlari', 'alkimyogar'];
 const PACE = { 101: 34, 102: 22, 103: 30, 104: 36, 105: 12, 106: 18 };
+const CLUB = [103, 104, 105, 106]; // the club's other readers
 
 const book = (env) => env.backend.books.find((b) => b.user_id === MADINA && b.catalog === OTKAN) ?? null;
 const marathon = (env) => env.backend.marathons[0] ?? null;
@@ -75,6 +76,7 @@ const ACTIONS = {
       for (let k = 1; k <= WEEK.length; k++) {
         jumpTo(env, k, 20 * 60 + 15);
         b.log(MADINA, book(env).id, { add: WEEK[k - 1] });
+        for (const uid of [SARDOR, ...CLUB]) readEvening(b, uid, env.day0 + k);
         await pause(160);
       }
     }
@@ -86,6 +88,8 @@ const ACTIONS = {
   async 4(env) {
     const { backend: b, ui, focus, pause } = env;
     if (!env.missed) {
+      jumpTo(env, 7, 19 * 60);
+      for (const uid of [SARDOR, ...CLUB]) readEvening(b, uid, env.day0 + 7);
       jumpTo(env, 7, 20 * 60 + 1);
       b.tick();
       env.missed = true;
@@ -105,6 +109,7 @@ const ACTIONS = {
       focus(LEADER, 'app');
       if (ui) await ui.startMarathon();
       else b.createMarathon(LEADER, 1, { title: '30 kunda 1000 bet', days: 30, goal: 1000 });
+      for (const uid of CLUB) readEvening(b, uid, env.day0 + 8); // the others read this morning
       await pause(900);
     }
     const code = b.clubs[0].code;
@@ -137,6 +142,7 @@ const ACTIONS = {
     const { backend: b, ui, focus, pause } = env;
     if (!env.big) {
       jumpTo(env, 9, 18 * 60);
+      for (const uid of CLUB) readEvening(b, uid, env.day0 + 9);
       focus(SARDOR, 'app');
       if (ui) await ui.quickLog(SARDOR, 900);
       else b.log(SARDOR, b.home(SARDOR).current, { add: 900 });
@@ -191,7 +197,7 @@ const ACTIONS = {
     const { backend: b, ui, focus, pause } = env;
     if (!b.certRows.some((c) => c.user_id === MADINA)) {
       const m = marathon(env);
-      liveDays(env, Math.max(10, b.today() - env.day0 + 1), m.end_day - env.day0, [MADINA, SARDOR, 103, 104, 105, 106]);
+      liveDays(env, Math.max(10, b.today() - env.day0 + 1), m.end_day - env.day0, [MADINA, SARDOR, ...CLUB]);
       jumpTo(env, m.end_day - env.day0 + 1, 9 * 60);
       b.tick();
       focus(MADINA, 'chat');

@@ -49,7 +49,7 @@ export function clubScreens(ctx, nav) {
         h('small', {}, `${date(m.start)} — ${date(m.end)} · ${ctx.P('fmt.pages', { n: m.goal })}`),
         me ? [barSvg(me.pct, m.state === 'live' ? expPct : null), h('b', { 'data-testid': 'my-rank' }, ctx.P('board.me', { rank: me.rank, pages: me.pages, goal: m.goal, pct: me.pct }))] : null,
         m.state === 'live' ? h('small', { 'data-testid': 'expected' }, ctx.P('mar.expected', { n: m.expected })) : null,
-        m.state === 'over' && !me?.done ? h('small', {}, ctx.P('app.pending_cert')) : null);
+        m.state === 'over' && !m.closed ? h('small', {}, ctx.P('app.pending_cert')) : null);
     }
 
     function board() {

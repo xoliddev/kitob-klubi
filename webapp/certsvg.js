@@ -1,6 +1,7 @@
 // The certificate, drawn in SVG: paper, a double frame with an eight-point star in each corner, the flame seal, the
 // name, the achievement, pages and days, the club, the date and the verification code with where to check it. It is
 // turned into a PNG in the browser (canvas), so it can be saved or sent to the bot. All text goes in as text nodes.
+import { civil } from '../shared/clock.js';
 import { dateShort, group } from '../shared/i18n.js';
 import { s } from './util.js';
 
@@ -62,7 +63,7 @@ export function certSvg(cert, { P, T, lang, link = '' }) {
   s('line', { x1: String(W - 620), y1: '900', x2: String(W - 170), y2: '900', stroke: INK, 'stroke-width': '1.5' }),
   text(395, 885, cert.club || 'Kitob Klubi', { 'font-family': serif, 'font-size': '32', fill: INK }),
   text(395, 932, P('cert.club').toUpperCase(), { 'font-family': sans, 'font-size': '20', 'letter-spacing': '3', fill: '#7a6a5c' }),
-  text(W - 395, 885, dateShort(T, lang, cert.issued_day), { 'font-family': serif, 'font-size': '32', fill: INK }),
+  text(W - 395, 885, P('fmt.date_year', { date: dateShort(T, lang, cert.issued_day), year: civil(cert.issued_day)[0] }), { 'font-family': serif, 'font-size': '32', fill: INK }),
   text(W - 395, 932, P('cert.date').toUpperCase(), { 'font-family': sans, 'font-size': '20', 'letter-spacing': '3', fill: '#7a6a5c' }),
   text(W / 2, 1000, `${P('cert.code')}: ${cert.code}`, { 'font-family': 'ui-monospace, Consolas, monospace', 'font-size': '30', 'font-weight': '700',
     fill: INK, 'letter-spacing': '2', 'data-testid': 'cert-code' }),

@@ -123,8 +123,8 @@ def book(lang: str, v: dict) -> tuple[str, Rows]:
         lines.append(pace_line(lang, card, v["today"]))
         rows = [[(t(lang, "btn.read"), f"l:{card['id']}:t")]]
     for log in v["logs"][:5]:
-        mark = t(lang, f"status.{log['status']}")
-        lines.append(f"· {date_short(lang, log['day'])}: +{log['pages']}" + (f" ({mark})" if mark else ""))
+        mark = "" if log["status"] == "ok" else f" ({t(lang, 'status.' + log['status'])})"
+        lines.append(f"· {date_short(lang, log['day'])}: +{log['pages']}{mark}")
     return "\n".join(lines), [*rows, [(t(lang, "btn.app"), f"@app#b={card['id']}")], back(lang, "n:books")]
 
 
