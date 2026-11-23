@@ -78,6 +78,7 @@
  "board.check": "🔎 tekshiruvda",
  "board.done": "🏅",
  "board.empty": "Hali hech kim yo'q.",
+ "flag.line": "{asked} deb yozdi, {pages} bet hisoblandi. Odatda: {usual}.", "club.sub": "Rahbar: {leader} · {n} a'zo",
  "flags.none": "Tekshiradigan narsa yo'q.",
  "flags.head": "🔎 <b>Tekshiruv</b>",
  "flag.row": "<b>{name}</b> · {date} · «{title}»\n{asked} deb yozdi, {pages} bet hisoblandi. Odatda: {usual}.",

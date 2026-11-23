@@ -78,6 +78,7 @@
  "board.check": "🔎 на проверке",
  "board.done": "🏅",
  "board.empty": "Пока никого нет.",
+ "flag.line": "Написал(а) {asked}, засчитано {pages} стр. Обычно: {usual}.", "club.sub": "Руководитель: {leader} · участников: {n}",
  "flags.none": "Проверять нечего.",
  "flags.head": "🔎 <b>Проверка</b>",
  "flag.row": "<b>{name}</b> · {date} · «{title}»\nНаписал(а) {asked}, засчитано {pages} стр. Обычно: {usual}.",
