@@ -1,0 +1,14 @@
+{
+  "note": "Fictional people and club. Seeded ids are negative (Telegram user ids are always positive), so nobody can sign in as them.",
+  "madina": {"id": -101, "name": "Madina Yusupova"},
+  "leader": {"id": -201, "name": "Nilufar ustoz"},
+  "admin": {"id": -900, "name": "Admin"},
+  "club": {"name": "Ziyo kitobxonlari", "code": "ZYKB7M2Q"},
+  "members": [
+    {"key": "sardor", "id": -102, "name": "Sardor Aliyev", "book": "urush_va_tinchlik", "start": 120, "avg": 22, "skip": 0, "goal": 10},
+    {"key": "jasur", "id": -103, "name": "Jasur Karimov", "book": "ikki_eshik_orasi", "start": 40, "avg": 30, "skip": 5, "goal": 20},
+    {"key": "dilnoza", "id": -104, "name": "Dilnoza Ergasheva", "book": "jinoyat_va_jazo", "start": 0, "avg": 36, "skip": 0, "goal": 30},
+    {"key": "bekzod", "id": -105, "name": "Bekzod Tursunov", "book": "yulduzli_tunlar", "start": 60, "avg": 14, "skip": 3, "goal": 10},
+    {"key": "aziza", "id": -106, "name": "Aziza Nazarova", "book": "kecha_va_kunduz", "start": 0, "avg": 18, "skip": 4, "goal": 15}
+  ]
+}
