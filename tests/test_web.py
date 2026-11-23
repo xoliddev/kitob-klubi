@@ -154,6 +154,8 @@ async def test_verify_is_public_uniform_and_rate_limited():
 async def test_static_files_and_rate_limit():
     async with api(rate=3) as (c, _svc, _clock, h, _):
         page = await c.get("/webapp/index.html")
+        root = await c.get("/webapp/")  # the address the bot opens
+        assert root.status == 200 and "<html" in (await root.text()).lower()
         assert page.status == 200 and "Content-Security-Policy" in page.headers
         assert (await c.get("/shared/locales/uz.json")).status == 200
         assert (await c.get("/healthz")).status == 200
