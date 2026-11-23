@@ -31,7 +31,7 @@ const bots = {};
 const apps = {};
 let shown = MADINA;
 const page = `${window.location.origin}${window.location.pathname.replace(/index\.html$/, '')}`;
-const links = { verify: (code) => `${page}?v=${code.replace(/-/g, '')}`, join: (code) => `https://t.me/kitobklubi_bot?start=k_${code}` };
+const links = { verify: (code) => `${page}?v=${code.replace(/-/g, '')}` }; // a ?v= link to this page replays the story and checks the code
 
 function focus(uid, pane) {
   phones[uid].show(pane);

@@ -203,7 +203,7 @@ async def test_book_certificate_when_the_leader_allows_it():
         _out, notes = await svc.log(SARDOR, b["id"], {"page": 96})
         cert_note = next(n for n in notes if n["type"] == "cert")
         c = await svc.cert(SARDOR, cert_note["cert_id"])
-        assert c["kind"] == "book" and c["title"] == "Kichkina shahzoda — Antuan de Sent-Ekzyuperi" and c["pages"] == 96
+        assert c["kind"] == "book" and c["title"] == "Kichkina shahzoda — Antuan de Sent-Ekzyuperi" and (c["pages"], c["days"]) == (96, 1)
 
 
 @pytest.mark.parametrize("start", ["2026-12-10", "2026-12-28"])

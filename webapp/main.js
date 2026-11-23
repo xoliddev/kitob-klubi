@@ -26,8 +26,7 @@ if (code !== null) {
   tg.ready();
   tg.expand();
   const api = httpApi(tg.initData);
-  const bot = tg.initDataUnsafe?.receiver?.username ?? '';
-  const links = { verify: (c) => `${base}?v=${c.replace(/-/g, '')}`, join: (k) => (bot ? `https://t.me/${bot}?start=k_${k}` : k) };
+  const links = { verify: (c) => `${base}?v=${c.replace(/-/g, '')}` }; // the join link with the bot's name is in the bot
   const m = /^#([bkc])=(\d{1,9})$/.exec(hash);
   const start = m?.[1] === 'k' ? 'clubs' : 'home';
   const app = mountApp(root, { ...shared, api, tg, lang: null, start, poll: 4000, links });

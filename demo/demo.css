@@ -243,3 +243,7 @@ button { font: inherit; cursor: pointer; }
 .pane.app > .g-app.public { min-height: 100%; max-width: none; }
 .ptab.on { background: #f4ece0; }
 .demo-btn { white-space: nowrap; }
+@media (max-width: 760px) {
+  .demo-tools { flex-wrap: wrap; gap: 6px; }
+  .demo-tools .demo-btn { padding: 6px 10px; font-size: 13px; }
+}

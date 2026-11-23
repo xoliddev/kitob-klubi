@@ -214,7 +214,8 @@ Object.assign(Backend.prototype, {
     const mine = new Set(this.members.filter((m) => m.user_id === uid).map((m) => m.club_id));
     const club = this.clubs.filter((k) => mine.has(k.id) && k.book_certs && !k.blocked).sort((a, b) => a.id - b.id)[0];
     if (!club) return [];
-    const id = this.issue(uid, 'book', `b:${book.id}`, `${book.title} — ${book.author}`, book.pages, book.finished_day - book.added_day + 1, club.name);
+    const days = new Set(this.logs.filter((l) => l.book_id === book.id && l.status !== 'rejected').map((l) => l.day)).size;
+    const id = this.issue(uid, 'book', `b:${book.id}`, `${book.title} — ${book.author}`, book.pages, days, club.name);
     return id ? [{ type: 'cert', to: uid, cert_id: id }] : [];
   },
 

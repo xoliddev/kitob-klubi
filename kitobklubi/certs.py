@@ -32,8 +32,9 @@ class Certs:
         if not club:
             return []
         title = f"{book['title']} — {book['author']}"
-        cid = await self.issue(c, uid, "book", f"b:{book['id']}", title, book["pages"], book["finished_day"] - book["added_day"] + 1,
-                               club["name"])
+        read = await self.q1(c, "SELECT COUNT(DISTINCT day) AS d FROM logs WHERE book_id = ? AND status <> 'rejected'", (book["id"],))
+        days = read["d"]
+        cid = await self.issue(c, uid, "book", f"b:{book['id']}", title, book["pages"], days, club["name"])
         return [{"type": "cert", "to": uid, "cert_id": cid}] if cid else []
 
     async def close_marathons(self) -> list[dict]:
