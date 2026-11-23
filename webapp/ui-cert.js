@@ -6,10 +6,11 @@ import { certSvg, toPng } from './certsvg.js';
 import { h, makeText, plain, toast } from './util.js';
 
 function details(P, T, lang, c) {
-  const rows = [[P('cert.given'), c.name], [P(c.kind === 'book' ? 'cert.book' : 'cert.marathon', { title: c.title }), ''],
-    [P('cert.pages'), String(c.pages)], [P('cert.days'), String(c.days)], [P('cert.club'), c.club], [P('cert.date'), plain(dateShort(T, lang, c.issued_day))],
-    [P('cert.code'), c.code]];
-  return h('dl', { class: 'v-details' }, rows.map(([k, v]) => [h('dt', {}, k), h('dd', {}, v)]));
+  const rows = [[P('cert.pages'), String(c.pages)], [P('cert.days'), String(c.days)], [P('cert.club'), c.club],
+    [P('cert.date'), plain(dateShort(T, lang, c.issued_day))], [P('cert.code'), c.code]];
+  return [h('p', { class: 'v-name' }, h('small', {}, P('cert.given')), h('b', {}, c.name)),
+    h('p', { class: 'v-what' }, P(c.kind === 'book' ? 'cert.book' : 'cert.marathon', { title: c.title })),
+    h('dl', { class: 'v-details' }, rows.map(([k, v]) => [h('dt', {}, k), h('dd', {}, v)]))];
 }
 
 /** The check itself, shared by the in-app screen and the public page. */

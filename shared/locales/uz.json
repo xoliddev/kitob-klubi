@@ -158,7 +158,7 @@
 
  "app.back": "⬅️ Orqaga", "app.lang": "RU", "app.open_in_telegram": "Bu ilova Telegram ichida ochiladi: botdagi «📊 Ilovani ochish» tugmasini bosing.",
  "app.tab_home": "Olov", "app.tab_books": "Kitoblar", "app.tab_clubs": "Klublar", "app.tab_more": "Men",
- "app.quick": "Bugun necha bet o'qidingiz?", "app.for": "Qaysi kun uchun:", "app.send": "Yozish", "app.save": "Saqlash",
+ "app.quick": "Bugun necha bet o'qidingiz?", "app.for": "Qaysi kun uchun:", "app.day_t": "Bugun", "app.day_y": "Kecha", "app.send": "Yozish", "app.save": "Saqlash",
  "app.heatmap": "So'nggi 15 hafta", "app.legend": "Kam · Maqsad · 2× maqsad · Muzlatish",
  "app.weekly": "Haftalar bo'yicha betlar", "app.summary": "Jami: {pages} bet · {days} kun o'qildi · {books} kitob",
  "app.authors": "Sevimli mualliflar", "app.authors_none": "Kitob tugagach bu yerda ko'rinadi.",
@@ -188,7 +188,7 @@
  "demo.app": "Ilova",
  "demo.bot_status": "bot",
  "demo.input": "Xabar yozing…",
- "demo.reset": "Qaytadan",
+ "demo.verify": "Tekshirish", "demo.reset": "Qaytadan",
  "demo.play": "Hammasini ko'rsatish",
  "demo.time": "Demo vaqti: {time}",
  "demo.png": "📎 sertifikat.png",

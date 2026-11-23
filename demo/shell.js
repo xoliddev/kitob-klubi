@@ -165,7 +165,7 @@ function paintTexts() {
   langBtn.textContent = lang === 'uz' ? 'RU' : 'UZ';
   resetBtn.textContent = P('demo.reset');
   playBtn.textContent = P('demo.play');
-  checkBtn.textContent = P('app.verify_open');
+  checkBtn.textContent = P('demo.verify');
   title.textContent = P('demo.title');
   lead.textContent = P('demo.lead');
   foot.textContent = P('demo.foot');

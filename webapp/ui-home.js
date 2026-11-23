@@ -31,6 +31,7 @@ export function homeScreens(ctx, nav) {
   async function logPages(bid, payload) {
     const out = await nav.run(() => ctx.api.log(bid, { ...payload, day }));
     if (!out) return null;
+    day = 'today'; // "yesterday" is a one-off choice
     haptic(ctx.tg, out.lit || out.met_now ? 'success' : 'light');
     ctx.toast(logMessage(ctx, out), out.log.status === 'flagged' ? 'warn' : '');
     lit = out.lit || out.met_now;
@@ -57,8 +58,8 @@ export function homeScreens(ctx, nav) {
   function quick(st, b) {
     const input = h('input', { inputmode: 'numeric', placeholder: ctx.P('app.f_add'), 'data-testid': 'quick-n', maxlength: 5, 'aria-label': ctx.P('app.f_add') });
     const seg = h('div', { class: 'g-seg', role: 'radiogroup' }, ['today', 'yesterday'].map((d) => h('label', {},
-      h('input', { type: 'radio', name: 'qday', value: d, checked: d === day, 'data-testid': `day-${d}`, onchange: () => { day = d; } }),
-      h('span', {}, ctx.P(d === 'today' ? 'app.start_0' : 'when.yesterday')))));
+      h('input', { type: 'radio', name: `qday${ctx.me.id}`, value: d, checked: d === day, 'data-testid': `day-${d}`, onchange: () => { day = d; } }),
+      h('span', {}, ctx.P(d === 'today' ? 'app.day_t' : 'app.day_y')))));
     return h('section', { class: 'g-card today', 'data-testid': 'today' },
       h('div', { class: 'today-top' }, ringSvg(st.today, st.goal),
         h('div', {}, h('b', { 'data-testid': 'today-line' }, plain(todayLine(ctx.T, ctx.lang, st))), h('small', {}, `«${b.title}» · ${b.page}/${b.pages}`))),

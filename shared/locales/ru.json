@@ -158,7 +158,7 @@
 
  "app.back": "⬅️ Назад", "app.lang": "UZ", "app.open_in_telegram": "Приложение открывается внутри Telegram: нажмите «📊 Открыть приложение» в боте.",
  "app.tab_home": "Огонь", "app.tab_books": "Книги", "app.tab_clubs": "Клубы", "app.tab_more": "Я",
- "app.quick": "Сколько страниц прочитали сегодня?", "app.for": "За какой день:", "app.send": "Записать", "app.save": "Сохранить",
+ "app.quick": "Сколько страниц прочитали сегодня?", "app.for": "За какой день:", "app.day_t": "Сегодня", "app.day_y": "Вчера", "app.send": "Записать", "app.save": "Сохранить",
  "app.heatmap": "Последние 15 недель", "app.legend": "Мало · Цель · 2× цели · Заморозка",
  "app.weekly": "Страницы по неделям", "app.summary": "Всего: {pages} стр. · {days} дн. чтения · книг: {books}",
  "app.authors": "Любимые авторы", "app.authors_none": "Появятся, когда вы дочитаете книгу.",
@@ -188,7 +188,7 @@
  "demo.app": "Приложение",
  "demo.bot_status": "бот",
  "demo.input": "Сообщение…",
- "demo.reset": "Заново",
+ "demo.verify": "Проверка", "demo.reset": "Заново",
  "demo.play": "Показать всё",
  "demo.time": "Время демо: {time}",
  "demo.png": "📎 sertifikat.png",

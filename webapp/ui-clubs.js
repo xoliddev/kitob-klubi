@@ -20,7 +20,7 @@ export function clubScreens(ctx, nav) {
       name: 'clubs', load, poll: async () => { const b = JSON.stringify(items); await load(); return b !== JSON.stringify(items); },
       render: () => h('div', { class: 'g-screen', 'data-testid': 'clubs' },
         items.map((k) => h('button', { class: 'k-card', type: 'button', 'data-testid': `club-${k.id}`, onclick: () => nav.show(club(k.id)) },
-          h('b', {}, k.name), h('small', {}, `${k.leader_name} · ${k.members} · ${k.is_leader ? ctx.P('club.leader_badge') : ''}`),
+          h('b', {}, k.name), h('small', {}, ctx.P('club.sub', { leader: k.leader_name, n: k.members })),
           k.marathon && !k.marathon.closed ? h('span', { class: 'g-pill amber' }, `🏁 ${k.marathon.title} · ${plain(marState(ctx.T, ctx.lang, k.marathon))}`) : null)),
         items.length ? null : h('p', { class: 'g-empty' }, ctx.P('club.none')),
         h('form', { class: 'g-card g-form', onsubmit: async (e) => {
@@ -85,7 +85,7 @@ export function clubScreens(ctx, nav) {
       h('div', { class: 'g-row' }, PRESETS.map(([d, g], i) => h('button', { class: 'g-btn small ghost', type: 'button', 'data-testid': `m-preset-${i}`, onclick: () => fill(d, g) },
         ctx.P('mar.title', { days: d, goal: g })))),
       field(ctx.P('app.f_mtitle'), f.title), h('div', { class: 'g-two' }, field(ctx.P('app.f_days'), f.days), field(ctx.P('app.f_goal'), f.goal)),
-      h('div', { class: 'g-seg' }, [0, 1].map((n) => h('label', {}, h('input', { type: 'radio', name: 'mstart', checked: n === 0, onchange: () => { startIn = n; } }),
+      h('div', { class: 'g-seg' }, [0, 1].map((n) => h('label', {}, h('input', { type: 'radio', name: `mstart${ctx.me.id}`, checked: n === 0, onchange: () => { startIn = n; } }),
         h('span', {}, ctx.P(`app.start_${n}`))))),
       h('button', { class: 'g-btn primary', type: 'submit', 'data-testid': 'm-save' }, ctx.P('app.save')));
     }

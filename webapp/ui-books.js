@@ -57,6 +57,7 @@ export function bookScreens(ctx, nav) {
     async function send(payload) {
       const out = await nav.run(() => ctx.api.log(bid, { ...payload, day }));
       if (!out) return false;
+      day = 'today';
       haptic(ctx.tg, out.lit || out.met_now ? 'success' : 'light');
       ctx.toast(logMessage(ctx, out), out.log.status === 'flagged' ? 'warn' : '');
       await load();
@@ -74,8 +75,8 @@ export function bookScreens(ctx, nav) {
         h('label', { class: 'g-label' }, ctx.P('app.f_page')),
         h('form', { class: 'g-km', onsubmit: async (e) => { e.preventDefault(); if (await send({ page: num(page.value) })) page.value = ''; } }, page,
           h('button', { class: 'g-btn primary', type: 'submit', 'data-testid': 'b-page-send' }, ctx.P('app.send'))),
-        h('div', { class: 'g-seg' }, ['today', 'yesterday'].map((d) => h('label', {}, h('input', { type: 'radio', name: 'bday', checked: d === day,
-          'data-testid': `b-day-${d}`, onchange: () => { day = d; } }), h('span', {}, ctx.P(d === 'today' ? 'app.start_0' : 'when.yesterday'))))));
+        h('div', { class: 'g-seg' }, ['today', 'yesterday'].map((d) => h('label', {}, h('input', { type: 'radio', name: `bday${ctx.me.id}`, checked: d === day,
+          'data-testid': `b-day-${d}`, onchange: () => { day = d; } }), h('span', {}, ctx.P(d === 'today' ? 'app.day_t' : 'app.day_y'))))));
     }
     function reviewForm(b) {
       const box = h('textarea', { rows: 3, maxlength: 400, placeholder: ctx.P('app.f_review'), 'data-testid': 'f-review' }, b.review);
