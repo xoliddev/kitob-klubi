@@ -5,6 +5,7 @@
 import { secretFrom } from '../shared/cert.js';
 import { localDay } from '../shared/clock.js';
 import { world } from '../shared/seedgen.js';
+import './backend-certs.js';
 import './backend-club.js';
 import { Backend } from './backend.js';
 
