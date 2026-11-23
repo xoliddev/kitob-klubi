@@ -207,7 +207,7 @@ const ACTIONS = {
     await ui?.certificate(MADINA);
     await pause(2000);
   },
-  // 11. Sardor checks the certificate's code: ✅ real. One letter changed: ❌ no such certificate.
+  // 11. Sardor checks a copy with one letter changed: ❌ no such certificate. Then the real code: ✅ (the story ends on it).
   async 11(env) {
     const { backend: b, ui, focus, pause } = env;
     const c = b.certs(MADINA)[0];
@@ -217,9 +217,9 @@ const ACTIONS = {
     env.forged = `${raw.slice(0, 9)}${swap}${raw.slice(10)}`.match(/.{4}/g).join('-');
     focus(SARDOR, 'app');
     if (ui) {
-      await ui.verify(c.code);
-      await pause(1800);
       await ui.verify(env.forged);
+      await pause(1800);
+      await ui.verify(c.code);
     } else {
       env.verified = b.verify(c.code).ok;
       try { b.verify(env.forged); } catch (e) { env.refused = e.code; }

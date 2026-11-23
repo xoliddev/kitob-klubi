@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — 2026-11-23
+
+- The demo story checks the edited code first and the real one last, so it ends on "✅ Haqiqiy sertifikat" with the
+  details instead of on the refusal.
+- The check page writes pages the way the certificate does ("1 117", not "1117").
+
 ## 1.0.0 — 2026-11-23
 
 Daily portfolio challenge #7.

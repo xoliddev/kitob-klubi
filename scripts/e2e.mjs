@@ -82,8 +82,12 @@ async function story(page, mobile) {
   const code = await text(page, `${M} [data-testid=cert-code-text]`);
   ok(/^[A-Z2-9]{4}(-[A-Z2-9]{4}){3}$/.test(code), 'a 16-letter code');
   await step(page, 11);
+  await has(page, `${S} [data-testid=verify-ok]`, 'Haqiqiy sertifikat');  // the story ends on the real code
+  const forged = `${code.slice(0, 11)}${code[11] === 'A' ? 'B' : 'A'}${code.slice(12)}`;
+  await page.locator(`${S} [data-testid=verify-input]`).fill(forged);
+  await page.locator(`${S} [data-testid=verify-go]`).click();
   await has(page, `${S} [data-testid=verify-bad]`, "Bunday sertifikat yo'q");
-  ok((await page.locator(`${S} [data-testid=verify-input]`).inputValue()) !== code, 'the edited code is refused');
+  ok(true, 'the edited code is refused');
   await page.locator(`${S} [data-testid=verify-input]`).fill(code);
   await page.locator(`${S} [data-testid=verify-go]`).click();
   await has(page, `${S} [data-testid=verify-ok]`, 'Haqiqiy sertifikat');

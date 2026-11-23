@@ -1,12 +1,12 @@
 // A certificate (drawn in SVG, saved as PNG, sent to the bot, its check link copied) and the check page: "✅ Haqiqiy
 // sertifikat" with the details, or "❌ Bunday sertifikat yo'q" for anything else. The check page also works on its
 // own, outside Telegram (?v=<code>).
-import { dateShort, makeT } from '../shared/i18n.js';
+import { dateShort, group, makeT } from '../shared/i18n.js';
 import { certSvg, toPng } from './certsvg.js';
 import { h, makeText, plain, toast } from './util.js';
 
 function details(P, T, lang, c) {
-  const rows = [[P('cert.pages'), String(c.pages)], [P('cert.days'), String(c.days)], [P('cert.club'), c.club],
+  const rows = [[P('cert.pages'), group(c.pages)], [P('cert.days'), String(c.days)], [P('cert.club'), c.club],
     [P('cert.date'), plain(dateShort(T, lang, c.issued_day))], [P('cert.code'), c.code]];
   return [h('p', { class: 'v-name' }, h('small', {}, P('cert.given')), h('b', {}, c.name)),
     h('p', { class: 'v-what' }, P(c.kind === 'book' ? 'cert.book' : 'cert.marathon', { title: c.title })),
